@@ -83,13 +83,16 @@ const Footer = () => {
                 Política de Privacidad
               </Link>
               <Link to="/legal/cookies" className="text-muted-foreground hover:text-primary">
-                Cookies
+                Política de Cookies
               </Link>
               <Link to="/legal/terminos" className="text-muted-foreground hover:text-primary">
                 Términos
               </Link>
               <Link to="/legal/aviso-legal" className="text-muted-foreground hover:text-primary">
                 Aviso Legal
+              </Link>
+              <Link to="/legal/privacidad" className="text-muted-foreground hover:text-primary">
+                GDPR
               </Link>
             </div>
           </div>
