@@ -37,9 +37,21 @@ const Community = () => {
 
   const handleSignup = (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
-      navigate("/gracias");
+    
+    if (!email.trim()) {
+      alert("Por favor, introduce tu email");
+      return;
     }
+    
+    // Close modal first
+    setShowSignupModal(false);
+    
+    // Reset form
+    setEmail("");
+    setSelectedPlan("");
+    
+    // Navigate to thank you page
+    navigate("/gracias");
   };
   const plans = [
     {
