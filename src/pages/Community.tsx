@@ -1,7 +1,12 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import {
   Accordion,
   AccordionContent,
@@ -20,6 +25,22 @@ import {
 } from "lucide-react";
 
 const Community = () => {
+  const [showSignupModal, setShowSignupModal] = useState(false);
+  const [email, setEmail] = useState("");
+  const [selectedPlan, setSelectedPlan] = useState("");
+  const navigate = useNavigate();
+
+  const handleMembershipClick = (planName: string) => {
+    setSelectedPlan(planName);
+    setShowSignupModal(true);
+  };
+
+  const handleSignup = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email) {
+      navigate("/gracias");
+    }
+  };
   const plans = [
     {
       name: "Mensual",
@@ -203,6 +224,7 @@ const Community = () => {
                     variant={plan.popular ? "hero" : "outline-primary"} 
                     className="w-full"
                     size="lg"
+                    onClick={() => handleMembershipClick(plan.name)}
                   >
                     Hacerme miembro
                   </Button>
@@ -246,13 +268,41 @@ const Community = () => {
               <p className="text-xl text-white/90 max-w-2xl mx-auto">
                 Únete a más de 500 profesionales que ya están aprovechando el poder de la IA en sus empresas.
               </p>
-              <Button variant="secondary" size="lg">
+              <Button variant="secondary" size="lg" onClick={() => handleMembershipClick("Anual")}>
                 Hacerme miembro ahora
               </Button>
             </CardContent>
           </Card>
         </div>
       </section>
+
+      {/* Signup Modal */}
+      <Dialog open={showSignupModal} onOpenChange={setShowSignupModal}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Únete a MenteIA - Plan {selectedPlan}</DialogTitle>
+            <DialogDescription>
+              Introduce tu email para comenzar tu membresía
+            </DialogDescription>
+          </DialogHeader>
+          <form onSubmit={handleSignup} className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="signup-email">Email</Label>
+              <Input
+                id="signup-email"
+                type="email"
+                placeholder="tu@empresa.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            <Button type="submit" variant="hero" className="w-full">
+              Confirmar membresía
+            </Button>
+          </form>
+        </DialogContent>
+      </Dialog>
     </Layout>
   );
 };
