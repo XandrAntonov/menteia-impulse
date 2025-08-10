@@ -17,25 +17,25 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 215 25% 15%;
 
-    /* MenteIA Brand Colors - Blues for trust/tech */
-    --primary: 221 83% 53%;
+    /* MenteIA Brand Colors - Modern blues and greens */
+    --primary: 217 91% 60%;
     --primary-foreground: 0 0% 100%;
-    --primary-light: 221 83% 65%;
-    --primary-dark: 221 83% 40%;
+    --primary-light: 217 91% 70%;
+    --primary-dark: 217 91% 45%;
 
-    /* Success/Growth Green */
-    --success: 142 76% 36%;
+    /* Enhanced Success/Growth Green */
+    --success: 160 84% 39%;
     --success-foreground: 0 0% 100%;
-    --success-light: 142 76% 50%;
-    --success-dark: 142 76% 25%;
+    --success-light: 160 84% 55%;
+    --success-dark: 160 84% 25%;
 
-    --secondary: 221 15% 95%;
+    --secondary: 217 20% 94%;
     --secondary-foreground: 215 25% 15%;
 
-    --muted: 221 15% 96%;
+    --muted: 217 20% 95%;
     --muted-foreground: 215 15% 45%;
 
-    --accent: 142 30% 92%;
+    --accent: 160 30% 90%;
     --accent-foreground: 215 25% 15%;
 
     --destructive: 0 84% 60%;

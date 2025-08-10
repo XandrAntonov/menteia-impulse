@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Brain, Mail, Linkedin, Youtube, Twitter } from "lucide-react";
+import { Zap, Mail, Linkedin, Youtube, Twitter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -11,7 +11,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <Brain className="h-6 w-6 text-primary" />
+              <Zap className="h-6 w-6 text-primary" />
               <span className="text-lg font-bold text-gradient">MenteIA</span>
             </div>
             <p className="text-sm text-muted-foreground">
