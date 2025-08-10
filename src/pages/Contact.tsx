@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { MapPin, Phone, Mail, Clock, MessageSquare, Calendar } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, MessageSquare, Calendar, Users } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 
@@ -36,23 +36,27 @@ const Contact = () => {
   const contactInfo = [
     {
       icon: MapPin,
-      title: "Dirección",
-      details: ["C. de la Innovación 12", "28045 Madrid, España"]
+      title: "Nuestra oficina",
+      details: ["C. de la Innovación 12", "28045 Madrid, España"],
+      color: "text-primary"
     },
     {
       icon: Phone,
-      title: "Teléfono",
-      details: ["+34 911 23 45 67"]
+      title: "Llámanos",
+      details: ["+34 911 23 45 67", "WhatsApp disponible"],
+      color: "text-success"
     },
     {
       icon: Mail,
-      title: "Email",
-      details: ["hola@menteia.net"]
+      title: "Escríbenos",
+      details: ["hola@menteia.net", "Respuesta en 24h"],
+      color: "text-primary"
     },
     {
       icon: Clock,
-      title: "Horario",
-      details: ["Lunes a Viernes", "9:00 - 18:00"]
+      title: "Horarios",
+      details: ["Lunes a Viernes", "9:00 - 18:00 CET"],
+      color: "text-muted-foreground"
     }
   ];
 
@@ -60,17 +64,20 @@ const Contact = () => {
     {
       icon: MessageSquare,
       title: "Consulta general",
-      description: "Preguntas sobre nuestros servicios, precios o metodología"
+      description: "Preguntas sobre servicios, metodología o primeros pasos con IA",
+      color: "bg-primary/10 text-primary"
+    },
+    {
+      icon: Users,
+      title: "Formación in-company",
+      description: "Solicitar propuesta personalizada para entrenar a tu equipo",
+      color: "bg-success/10 text-success"
     },
     {
       icon: Calendar,
-      title: "Formación in-company",
-      description: "Solicitar propuesta personalizada para tu equipo"
-    },
-    {
-      icon: Phone,
       title: "Consultoría estratégica",
-      description: "Asesoramiento para tu roadmap de adopción de IA"
+      description: "Asesoramiento para planificar tu roadmap de adopción de IA",
+      color: "bg-primary/10 text-primary"
     }
   ];
 
@@ -80,11 +87,12 @@ const Contact = () => {
       <section className="py-20 lg:py-32">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h1 className="text-4xl lg:text-6xl font-bold mb-6">
-              Hablemos de tu proyecto de <span className="text-gradient">IA</span>
+            <h1 className="text-4xl lg:text-5xl font-bold mb-6">
+              ¿Tienes un proyecto de <span className="text-gradient">IA en mente?</span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              ¿Tienes dudas sobre cómo integrar IA en tu empresa? ¿Necesitas formación para tu equipo? Estamos aquí para ayudarte.
+              Cuéntanos tu desafío y te ayudaremos a diseñar la solución perfecta. 
+              Desde formación hasta implementación completa.
             </p>
           </div>
         </div>
@@ -95,11 +103,14 @@ const Contact = () => {
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Form */}
-            <Card>
+            <Card className="hover-lift">
               <CardHeader>
-                <CardTitle>Envíanos un mensaje</CardTitle>
+                <CardTitle className="flex items-center space-x-2">
+                  <MessageSquare className="h-5 w-5 text-primary" />
+                  <span>Envíanos un mensaje</span>
+                </CardTitle>
                 <CardDescription>
-                  Te responderemos en las próximas 24 horas con una propuesta personalizada.
+                  Te responderemos en menos de 24 horas con una propuesta personalizada y próximos pasos.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -166,33 +177,37 @@ const Contact = () => {
             {/* Contact Info */}
             <div className="space-y-8">
               <div>
-                <h2 className="text-2xl font-bold mb-6">Información de contacto</h2>
+                <h2 className="text-2xl font-bold mb-6 text-primary">Información de contacto</h2>
                 <div className="space-y-6">
                   {contactInfo.map((info, index) => (
-                    <div key={index} className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
-                        <info.icon className="h-5 w-5 text-primary" />
+                    <Card key={index} className="p-4 hover-lift">
+                      <div className="flex items-start space-x-4">
+                        <div className={`w-12 h-12 ${info.color === 'text-success' ? 'bg-success/10' : 'bg-primary/10'} rounded-full flex items-center justify-center flex-shrink-0`}>
+                          <info.icon className={`h-5 w-5 ${info.color}`} />
+                        </div>
+                        <div>
+                          <h3 className="font-semibold mb-1">{info.title}</h3>
+                          {info.details.map((detail, detailIndex) => (
+                            <p key={detailIndex} className={detailIndex === 0 ? "text-foreground" : "text-muted-foreground text-sm"}>
+                              {detail}
+                            </p>
+                          ))}
+                        </div>
                       </div>
-                      <div>
-                        <h3 className="font-semibold mb-1">{info.title}</h3>
-                        {info.details.map((detail, detailIndex) => (
-                          <p key={detailIndex} className="text-muted-foreground">
-                            {detail}
-                          </p>
-                        ))}
-                      </div>
-                    </div>
+                    </Card>
                   ))}
                 </div>
               </div>
 
               <div>
-                <h3 className="text-xl font-semibold mb-4">¿En qué podemos ayudarte?</h3>
-                <div className="space-y-4">
+                <h3 className="text-xl font-semibold mb-4 text-primary">¿Cómo podemos ayudarte?</h3>
+                <div className="space-y-3">
                   {contactReasons.map((reason, index) => (
-                    <Card key={index} className="hover-lift">
+                    <Card key={index} className="hover-lift cursor-pointer transition-all hover:shadow-md">
                       <CardContent className="p-4 flex items-start space-x-3">
-                        <reason.icon className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
+                        <div className={`w-10 h-10 ${reason.color} rounded-full flex items-center justify-center flex-shrink-0`}>
+                          <reason.icon className="h-5 w-5" />
+                        </div>
                         <div>
                           <h4 className="font-medium mb-1">{reason.title}</h4>
                           <p className="text-sm text-muted-foreground">{reason.description}</p>
@@ -211,7 +226,7 @@ const Contact = () => {
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">Preguntas frecuentes</h2>
+            <h2 className="text-3xl font-bold text-center mb-12">Preguntas más frecuentes</h2>
             <div className="space-y-6">
               {[
                 {
@@ -243,22 +258,50 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Map placeholder */}
-      <section className="py-20">
+      {/* CTA Section */}
+      <section className="py-16">
         <div className="container mx-auto px-4">
-          <Card>
-            <CardContent className="p-0">
-              <div className="h-96 bg-muted/50 flex items-center justify-center">
-                <div className="text-center space-y-4">
-                  <MapPin className="h-12 w-12 text-muted-foreground mx-auto" />
-                  <div>
-                    <p className="font-semibold">C. de la Innovación 12</p>
-                    <p className="text-muted-foreground">28045 Madrid, España</p>
-                  </div>
-                </div>
+          <Card className="gradient-hero text-center max-w-4xl mx-auto">
+            <CardContent className="p-8 space-y-6">
+              <h2 className="text-3xl font-bold text-white">
+                ¿Listo para empezar?
+              </h2>
+              <p className="text-xl text-white/90">
+                Únete a más de 500 profesionales que ya transforman su trabajo con IA.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button variant="secondary" size="lg">
+                  Únete a la comunidad
+                </Button>
+                <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-primary">
+                  Ver recursos gratuitos
+                </Button>
               </div>
             </CardContent>
           </Card>
+        </div>
+      </section>
+
+      {/* Simplified Contact Info */}
+      <section className="py-12 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <div className="text-center max-w-2xl mx-auto">
+            <h3 className="text-xl font-semibold mb-4">Otras formas de contacto</h3>
+            <div className="flex flex-wrap justify-center gap-6 text-sm">
+              <div className="flex items-center space-x-2">
+                <Mail className="h-4 w-4 text-primary" />
+                <span>hola@menteia.net</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Phone className="h-4 w-4 text-primary" />
+                <span>+34 911 23 45 67</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Clock className="h-4 w-4 text-primary" />
+                <span>L-V, 9:00-18:00</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </Layout>
