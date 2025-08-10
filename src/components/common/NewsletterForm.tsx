@@ -54,7 +54,7 @@ const NewsletterForm = ({ placeholder = "Tu email", size = "default" }: Newslett
       />
       <Button 
         type="submit" 
-        variant="community" 
+        variant="default" 
         size={size}
         disabled={isLoading}
       >

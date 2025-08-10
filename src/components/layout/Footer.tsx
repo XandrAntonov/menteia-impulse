@@ -66,7 +66,7 @@ const Footer = () => {
             </p>
             <div className="flex space-x-2">
               <Input placeholder="Tu email" className="text-sm" />
-              <Button size="sm" variant="community">
+              <Button size="sm" variant="default">
                 <Mail className="h-4 w-4" />
               </Button>
             </div>

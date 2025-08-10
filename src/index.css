@@ -35,7 +35,7 @@ All colors MUST be HSL.
     --muted: 217 20% 95%;
     --muted-foreground: 215 15% 45%;
 
-    --accent: 160 30% 90%;
+    --accent: 217 40% 92%;
     --accent-foreground: 215 25% 15%;
 
     --destructive: 0 84% 60%;
@@ -112,17 +112,21 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
   }
 
-  /* MenteIA Brand Gradients */
+  /* MenteIA Brand Gradients - More blue dominant */
   .gradient-hero {
-    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--success)) 100%);
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-light)) 100%);
   }
 
   .gradient-card {
-    background: linear-gradient(145deg, hsl(var(--background)) 0%, hsl(var(--secondary)) 100%);
+    background: linear-gradient(145deg, hsl(var(--background)) 0%, hsl(var(--primary) / 0.05) 100%);
   }
 
   .gradient-cta {
-    background: linear-gradient(135deg, hsl(var(--success)) 0%, hsl(var(--success-dark)) 100%);
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary-dark)) 100%);
+  }
+
+  .gradient-blue-accent {
+    background: linear-gradient(135deg, hsl(var(--primary-light)) 0%, hsl(var(--primary)) 100%);
   }
 
   /* Typography */
@@ -140,14 +144,14 @@ All colors MUST be HSL.
 
   .hover-lift:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px -5px hsl(var(--primary) / 0.2);
+    box-shadow: 0 10px 25px -5px hsl(var(--primary) / 0.3);
   }
 
-  .pulse-success {
-    animation: pulse-success 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  .pulse-primary {
+    animation: pulse-primary 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 
-  @keyframes pulse-success {
+  @keyframes pulse-primary {
     0%, 100% {
       opacity: 1;
     }
