@@ -159,10 +159,6 @@ const Resources = () => {
                   <CardDescription className="line-clamp-3">
                     {resource.description}
                   </CardDescription>
-                  <Button variant="outline-primary" className="w-full">
-                    <Download className="h-4 w-4 mr-2" />
-                    Descargar gratis
-                  </Button>
                 </CardContent>
               </Card>
             ))}
@@ -195,9 +191,6 @@ const Resources = () => {
                   </p>
                   <div className="text-2xl font-bold text-primary">{role.promptCount}</div>
                   <div className="text-xs text-muted-foreground">prompts incluidos</div>
-                  <Button variant="community" size="sm" className="w-full">
-                    Descargar
-                  </Button>
                 </CardContent>
               </Card>
             ))}
